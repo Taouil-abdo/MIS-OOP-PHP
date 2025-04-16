@@ -17,16 +17,16 @@ class Voiture extends Vehicule implements ReservableInterface{
 	}
 	
     public function reserver(Client $client, DateTime $dateDebut, int $nbJours){
-        if (!$this->disponible) {
-            throw new Exception("La voiture n'est pas disponible pour réservation.");
-        }
-
+        
+		if(!$this->disponible){
+			echo ("La voiture n'est pas disponible pour réservation.");
+		}
         $this->disponible = false;
 
         $dateFin = clone $dateDebut;
         $dateFin->modify("+$nbJours days");
 
-        echo "Réservation effectuée pour le client " . $client->getNom() . " du " . $dateDebut->format('Y-m-d') . " au " . $dateFin->format('Y-m-d') . ".";
+        echo "Réservation effectuée pour le client " . $client->nom . " du " . $dateDebut->format('Y-m-d') . " au " . $dateFin->format('Y-m-d') . ".";
     }
 	
 	public function getType(){
